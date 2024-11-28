@@ -5,11 +5,18 @@ import { NewsFeed } from './components/NewsFeed';
 import { SettingsPage } from './components/SettingsPage';
 import { Dashboard } from './components/Dashboard';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { NewsTicker } from './components/NewsTicker';
+import { useAnalysisStore } from './store/analysis';
 
 function App() {
+  const { analyses } = useAnalysisStore();
+  const latestAnalysis = analyses[0] || null;
+
   return (
     <Router>
       <div className="min-h-screen bg-gray-100">
+        <NewsTicker analysis={latestAnalysis} />
+        
         <nav className="bg-white shadow-md">
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex justify-between h-16">
